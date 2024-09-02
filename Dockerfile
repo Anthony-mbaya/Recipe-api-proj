@@ -10,7 +10,6 @@ WORKDIR /app
 EXPOSE 8000
 
 #copy the req file, app to the docker file ,expose port 8000 - dj
-
 ARG DEV=false
 #defines a build argument called dev
 
