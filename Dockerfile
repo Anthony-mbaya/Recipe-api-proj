@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.13 
+FROM python:3.9-alpine3.13
 #python - image, alpine - tagname
 LABEL maintainer="CruxTon"
 ENV PYTHONUNBUFFERED 1
@@ -14,11 +14,11 @@ EXPOSE 8000
 ARG DEV=false
 #defines a build argument called dev
 
-RUN python -m venv /py && \ 
+RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
-    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache postgresql-client jpeg-dev && \
     apk add --update --no-cache --virtual .tnp-build-deps \
-        build-base postgresql-dev musl-dev && \
+        build-base postgresql-dev musl-dev zlib zlib-dev && \
     /py/bin/pip install -r /tnp/requirements.txt && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tnp/requirements.dev.txt ; \
