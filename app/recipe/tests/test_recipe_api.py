@@ -7,7 +7,8 @@ from django.urls import reverse
 
 from PIL import Image
 
-import tempfile, os
+import tempfile
+import os
 
 from rest_framework import status
 from rest_framework.test import APIClient
@@ -25,7 +26,7 @@ def detail_url(recipe_id):
     return reverse('recipe:recipe-detail', args=[recipe_id])
 
 def image_upload_url(recipe_id):
-    return reverse('recipe:recipe-detail', args=[recipe_id])
+    return reverse('recipe:recipe-upload-image', args=[recipe_id])
 
 def create_recipe(user, **params):
     defaults = {
