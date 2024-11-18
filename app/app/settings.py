@@ -20,14 +20,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+7fq3i4u+y1cdaimc^ry_nkjj4adn4zid3s(u-qvonx7jr*@d-'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+"""
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '09b8-105-161-132-90.ngrok-free.app',
+]
+"""
 ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
+    )
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,14 +59,25 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    #'corsheaders.middleware.CorsMiddleware',
-    'https://recipe-app-react-pi.vercel.app',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+"""
+CORS_ALLOWED_ORIGINS = [
+    'https://recipe-app-react-pi.vercel.app',
+    'https://09b8-105-161-132-90.ngrok-free.app',
+]"""
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+    "ngrok-skip-browser-warning",
+]
+#CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+
 
 ROOT_URLCONF = 'app.urls'
 
@@ -131,6 +152,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/static/'
 MEDIA_URL = 'static/media/'
+# MEDIA_URL = 'https://09b8-105-161-132-90.ngrok-free.app/static/media/uploads/recipe/'
 
 MEDIA_ROOT = '/vol/web/media'
 STATIC_ROOT = '/vol/web/static'
