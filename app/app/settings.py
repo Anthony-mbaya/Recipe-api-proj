@@ -70,11 +70,11 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'https://recipe-app-react-pi.vercel.app',
     'https://09b8-105-161-132-90.ngrok-free.app',
-]"""
+]
 CORS_ALLOW_HEADERS = [
     "authorization",
     "content-type", 
-]
+]"""
 #CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 
 
@@ -171,6 +171,6 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
 
-CORS_ALLOW_ALL_ORIGINS = [
-    'http://ec2-54-88-162-126.compute-1.amazonaws.com'
+CORS_ALLOWED_ORIGINS = [
+    'https://recipe-app-react-pi.vercel.app',
 ]
