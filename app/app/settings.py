@@ -73,8 +73,7 @@ CORS_ALLOWED_ORIGINS = [
 ]"""
 CORS_ALLOW_HEADERS = [
     "authorization",
-    "content-type",
-    "ngrok-skip-browser-warning",
+    "content-type", 
 ]
 #CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 
@@ -172,4 +171,6 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = [
+    'http://ec2-54-88-162-126.compute-1.amazonaws.com'
+]
