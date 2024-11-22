@@ -16,6 +16,7 @@ server {
     server_name ec2-54-88-162-126.compute-1.amazonaws.com;
 
     location / {
+        return 301 https://$host$request_uri;
         proxy_pass http://recipe-api-proj_proxy_1:8000; # Assuming your Django app is running on this port
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
